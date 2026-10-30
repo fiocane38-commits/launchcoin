@@ -108,3 +108,9 @@ app.listen(3000, () => {
   console.log('LaunchCoin server on http://localhost:3000');
   console.log('Receiver:', YOUR_RECEIVER_WALLET);
 });
+
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, '0.0.0.0', () => {
+  console.log('LaunchCoin server on port', PORT);
+  console.log('Receiver:', YOUR_RECEIVER_WALLET);
+});
