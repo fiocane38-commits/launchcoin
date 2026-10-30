@@ -3,7 +3,7 @@ import { UniversalProvider } from 'https://esm.sh/@walletconnect/universal-provi
 import { WalletConnectModal } from 'https://esm.sh/@walletconnect/modal@2.7.0';
 
 // ===== CONFIG =====
-const PROJECT_ID = '45966f4582d9642a00c1c64078c6de90';              // da cloud.reown.com
+const PROJECT_ID = '4b0098818e17f1e6c8fa9c7d5dcf4c04';              // da cloud.reown.com
 const RECEIVER_WALLET = '9GD63MUwf1SzLs59UFZCmA7NLABkYYWrx8PVG3CmXBMo';  // stessa di app.js / config.json
 
 const connection = new solanaWeb3.Connection(
