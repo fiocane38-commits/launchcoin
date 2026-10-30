@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.5" />
+  <title>Create Liquidity – LaunchCoin</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header class="glass">
+    <div class="logo">
+      <img src="assets/logo.png" alt="LaunchCoin" class="logo-header" />
+    </div>
+    <div class="menu-wrapper">
+      <button class="hamburger" onclick="toggleMenu()">☰</button>
+      <nav class="dropdown-menu" id="dropdownMenu">
+        <a href="create.html">Create Token</a>
+        <a href="liquidity.html">Create Liquidity</a>
+        <a href="faq.html">How to use</a>
+        <a href="faq.html">FAQ</a>
+      </nav>
+    </div>
+    <div class="connect-group" style="display:flex;align-items:center;gap:8px;flex-shrink:0;">
+      <button type="button" class="connect-btn phantom-btn" onclick="connectPhantom()" title="Phantom"
+        style="display:flex;align-items:center;gap:6px;padding:8px 12px;border-radius:20px;border:none;background:#ab9ff2;color:#1a1a2e;font-weight:600;cursor:pointer;font-size:13px;">
+        <img src="https://raw.githubusercontent.com/solana-labs/wallet-adapter/master/packages/wallets/icons/phantom.svg"
+          alt="" width="18" height="18" style="border-radius:4px;" />
+        Phantom
+      </button>
+      <button type="button" class="connect-btn" onclick="connectWallet()">Connect</button>
+    </div>
+  </header>
+
+  <div class="container liquidity glass">
+    <h2>Create Liquidity Pool</h2>
+    <p class="sub">Provide liquidity and earn fees.</p>
+
+    <form id="liquidityForm">
+      <div class="liquidity-row">
+        <label>Base token <span class="max">0 Max 50%</span></label>
+        <div class="token-select">
+          <select id="baseToken">
+            <option value="SOL">SOL</option>
+            <option value="RAY">RAY</option>
+            <option value="USDC">USDC</option>
+          </select>
+          <input type="number" id="baseAmount" placeholder="0" />
+          <span class="usd-value">\~$0</span>
+        </div>
+      </div>
+
+      <div class="liquidity-row">
+        <label>Quote token <span class="max">0 Max 50%</span></label>
+        <div class="token-select">
+          <select id="quoteToken">
+            <option value="RAY">RAY</option>
+            <option value="SOL">SOL</option>
+            <option value="USDC">USDC</option>
+          </select>
+          <input type="number" id="quoteAmount" placeholder="0" />
+          <span class="usd-value">\~$0</span>
+        </div>
+      </div>
+
+      <div class="liquidity-row price-row">
+        <label>Initial price</label>
+        <div class="price-display">
+          <span id="priceLabel">RAY/SOL</span>
+          <span id="currentPrice">1 SOL ≈ 119.246268115 RAY</span>
+        </div>
+      </div>
+
+      <div class="liquidity-row fee-row">
+        <label>Fee Tier</label>
+        <select id="feeTier">
+          <option value="0.01">0.01%</option>
+          <option value="0.05">0.05%</option>
+          <option value="0.30" selected>0.30%</option>
+          <option value="1.00">1.00%</option>
+        </select>
+      </div>
+
+      <button type="button" onclick="createLiquidity()">Create Pool</button>
+      <div id="liquidityResult" style="margin-top:20px;"></div>
+    </form>
+  </div>
+
+  <script src="https://unpkg.com/@solana/web3.js@1.98.0/lib/index.iife.min.js"></script>
+  <script type="module" src="wc.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
