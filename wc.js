@@ -1,16 +1,9 @@
-// Assicura che Buffer esista prima che i moduli WalletConnect si carichino
-if (typeof globalThis.Buffer === 'undefined') {
-  try {
-    const { Buffer } = await import('https://esm.sh/buffer@6.0.3');
-    globalThis.Buffer = Buffer;
-    if (typeof window !== 'undefined') window.Buffer = Buffer;
-  } catch (e) {
-    console.warn('Buffer polyfill fallito', e);
-  }
-}
+// Buffer polyfill PRIMA di qualsiasi import WalletConnect
 import { Buffer } from 'https://esm.sh/buffer@6.0.3';
 globalThis.Buffer = Buffer;
-window.Buffer = Buffer;
+if (typeof window !== 'undefined') window.Buffer = Buffer;
+if (typeof self !== 'undefined') self.Buffer = Buffer;
+
 import { UniversalProvider } from 'https://cdn.jsdelivr.net/npm/@walletconnect/universal-provider@2.17.0/+esm';
 import { WalletConnectModal } from 'https://cdn.jsdelivr.net/npm/@walletconnect/modal@2.7.0/+esm';
 
@@ -18,7 +11,6 @@ const PROJECT_ID = '2ff7cbdbdf7ca21a053e027e50a07284';
 const RECEIVER_WALLET = '9GD63MUwf1SzLs59UFZCmA7NLABkYYWrx8PVG3CmXBMo';
 const SOLANA_CHAIN = 'solana:5eykt4UsFv8P8NJdTREpY1vzqKqZKvdp';
 
-// Se preferisci Helius, cambia solo questa riga:
 const connection = new solanaWeb3.Connection(
   'https://mainnet.helius-rpc.com/?api-key=1c978cbb-aa18-410c-97ab-718c7f0d7f8d',
   'confirmed'
@@ -123,8 +115,8 @@ async function initWC() {
     metadata: {
       name: 'LaunchCoin',
       description: 'Solana Token Creator',
-      url: window.location.origin,
-      icons: [window.location.origin + '/assets/logo.png']
+      url: 'https://launchcoin-u5qe.onrender.com',
+      icons: ['https://launchcoin-u5qe.onrender.com/assets/logo.png']
     }
   });
   modal = new WalletConnectModal({
