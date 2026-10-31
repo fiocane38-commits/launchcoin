@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.5" />
+  <title>Connect Wallet – LaunchCoin</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header class="glass">
+    <div class="logo">
+      <img src="assets/logo.png" alt="LaunchCoin" class="logo-header" />
+    </div>
+    <div class="menu-wrapper">
+      <button class="hamburger" onclick="toggleMenu()">☰</button>
+      <nav class="dropdown-menu" id="dropdownMenu">
+        <a href="create.html">Create Token</a>
+        <a href="liquidity.html">Create Liquidity</a>
+        <a href="faq.html">How to use</a>
+        <a href="faq.html">FAQ</a>
+      </nav>
+    </div>
+    <button class="connect-btn" onclick="connectWallet()">Connect</button>
+  </header>
+
+  <div class="wallet-modal glass">
+    <h2>CoinFlip</h2>
+    <p class="wallet-sub">to continue</p>
+    <ul>
+      <li><button onclick="selectWallet('phantom')"><img src="assets/phantom.png" alt="Phantom" /> Phantom</button></li>
+      <li><button onclick="selectWallet('solflare')"><img src="assets/solflare.png" alt="Solflare" /> Solflare</button></li>
+      <li><button onclick="selectWallet('torus')"><img src="assets/torus.png" alt="Torus" /> Torus</button></li>
+      <li><button onclick="selectWallet('coin98')"><img src="assets/coin98.png" alt="Coin98" /> Coin98</button></li>
+      <li><button onclick="selectWallet('trust')"><img src="assets/trust.png" alt="Trust Wallet" /> Trust Wallet</button></li>
+      <li><button onclick="selectWallet('cake')"><img src="assets/cake.png" alt="Cake Wallet" /> Cake Wallet</button></li>
+      <li><button onclick="selectWallet('metamask')"><img src="assets/metamask.png" alt="MetaMask" /> MetaMask</button></li>
+      <li><button onclick="selectWallet('coinbase')"><img src="assets/coinbase.png" alt="Coinbase Wallet" /> Coinbase Wallet</button></li>
+      <li><button onclick="selectWallet('binance')"><img src="assets/binance.png" alt="Binance Wallet" /> Binance Wallet</button></li>
+      <li><button onclick="selectWallet('tokenpocket')"><img src="assets/tokenpocket.png" alt="TokenPocket" /> TokenPocket</button></li>
+      <li><button onclick="selectWallet('neko')"><img src="assets/neko.png" alt="Neko" /> Neko</button></li>
+      <li><button onclick="selectWallet('nightly')"><img src="assets/nightly.png" alt="Nightly" /> Nightly</button></li>
+      <li><button onclick="selectWallet('backpack')"><img src="assets/backpack.png" alt="Backpack" /> Backpack</button></li>
+    </ul>
+    <button class="back" onclick="window.location.href='index.html'">← Back</button>
+  </div>
+  
+<script src="https://unpkg.com/buffer@6.0.3/index.js"></script>
+<script>
+  // Forza Buffer in tutti i global che le librerie WalletConnect controllano
+  (function () {
+    const B = (typeof buffer !== 'undefined' && buffer.Buffer)
+             || (typeof window !== 'undefined' && window.buffer && window.buffer.Buffer)
+             || null;
+    if (B) {
+      if (typeof globalThis !== 'undefined') globalThis.Buffer = B;
+      if (typeof window !== 'undefined') window.Buffer = B;
+      if (typeof global !== 'undefined') global.Buffer = B;
+      if (typeof self !== 'undefined') self.Buffer = B;
+    }
+  })();
+</script>
+<script src="https://unpkg.com/@solana/web3.js@1.98.0/lib/index.iife.min.js"></script>
+<script type="module" src="wc.js"></script>
+<script src="app.js"></script>
+</body>
+</html>

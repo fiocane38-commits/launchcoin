@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.5" />
+  <title>Create Token – LaunchCoin</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header class="glass">
+    <div class="logo">
+      <img src="assets/logo.png" alt="LaunchCoin" class="logo-header" />
+    </div>
+    <div class="menu-wrapper">
+      <button class="hamburger" onclick="toggleMenu()">☰</button>
+      <nav class="dropdown-menu" id="dropdownMenu">
+        <a href="create.html">Create Token</a>
+        <a href="liquidity.html">Create Liquidity</a>
+        <a href="faq.html">How to use</a>
+        <a href="faq.html">FAQ</a>
+      </nav>
+    </div>
+    <div class="connect-group" style="display:flex;align-items:center;gap:8px;flex-shrink:0;">
+      <button type="button" class="connect-btn phantom-btn" onclick="connectPhantom()" title="Phantom"
+        style="display:flex;align-items:center;gap:6px;padding:8px 12px;border-radius:20px;border:none;background:#ab9ff2;color:#1a1a2e;font-weight:600;cursor:pointer;font-size:13px;">
+        <img src="https://raw.githubusercontent.com/solana-labs/wallet-adapter/master/packages/wallets/icons/phantom.svg"
+          alt="" width="18" height="18" style="border-radius:4px;" />
+        Phantom
+      </button>
+      <button type="button" class="connect-btn" onclick="connectWallet()">Connect</button>
+    </div>
+  </header>
+
+  <div class="container glass">
+    <h2>Launch Your Own Coin</h2>
+    <p class="sub">Launch your own token on Solana in seconds. No coding required.</p>
+
+    <form id="tokenForm">
+      <div class="step" id="step1">
+        <div class="step-indicator">1 2 3</div>
+        <label>Token Name * <input type="text" id="tokenName" value="Meme Coin" required /></label>
+        <label>Token Symbol * <input type="text" id="tokenSymbol" value="meme" maxlength="8" required /></label>
+        <label>Token Image * <input type="file" id="tokenImage" accept="image/*" /></label>
+        <p class="hint">PNG or JPG. Max 5MB.</p>
+        <button type="button" onclick="nextStep()">Next →</button>
+      </div>
+
+      <div class="step" id="step2" style="display:none;">
+        <div class="step-indicator">1 2 3</div>
+        <label>Token Decimals * <input type="number" id="tokenDecimals" value="9" /></label>
+        <label>Total Supply <input type="number" id="totalSupply" value="1000000000" /></label>
+        <label>Token Description <textarea id="tokenDesc">Enter token description</textarea></label>
+        <div class="nav-buttons">
+          <button type="button" onclick="prevStep()">← Previous</button>
+          <button type="button" onclick="nextStep()">Next →</button>
+        </div>
+      </div>
+
+      <div class="step" id="step3" style="display:none;">
+        <div class="step-indicator">1 2 3</div>
+        <label>Website <input type="url" id="website" value="https://mymemecoin.com" /></label>
+        <label>Twitter <input type="url" id="twitter" value="https://twitter.com/..." /></label>
+        <label>Telegram <input type="url" id="telegram" value="https://t.me/..." /></label>
+        <label>Discord <input type="url" id="discord" value="https://discord.gg/..." /></label>
+
+        <div class="options">
+          <p><input type="checkbox" id="modifyCreator" /> Modify Creator Information <span class="fee">+0.1 SOL</span></p>
+          <p><input type="checkbox" id="dexBoost" /> Dexscreener Token Boost <span class="free">FREE</span></p>
+          <p><input type="checkbox" id="revokeFreeze" /> Revoke Freeze <span class="fee">+0.1 SOL</span></p>
+          <p><input type="checkbox" id="revokeMint" /> Revoke Mint <span class="fee">+0.1 SOL</span></p>
+          <p><input type="checkbox" id="revokeUpdate" /> Revoke Update <span class="fee">+0.1 SOL</span></p>
+        </div>
+
+        <div class="nav-buttons">
+          <button type="button" onclick="prevStep()">← Previous</button>
+          <button type="button" onclick="createCoin()">Create Coin</button>
+        </div>
+        <div id="result" style="margin-top:20px;"></div>
+      </div>
+    </form>
+  </div>
+  <script src="https://unpkg.com/buffer@6.0.3/index.js"></script>
+<script>
+  // Forza Buffer in tutti i global che le librerie WalletConnect controllano
+  (function () {
+    const B = (typeof buffer !== 'undefined' && buffer.Buffer)
+             || (typeof window !== 'undefined' && window.buffer && window.buffer.Buffer)
+             || null;
+    if (B) {
+      if (typeof globalThis !== 'undefined') globalThis.Buffer = B;
+      if (typeof window !== 'undefined') window.Buffer = B;
+      if (typeof global !== 'undefined') global.Buffer = B;
+      if (typeof self !== 'undefined') self.Buffer = B;
+    }
+  })();
+</script>
+<script src="https://unpkg.com/@solana/web3.js@1.98.0/lib/index.iife.min.js"></script>
+<script type="module" src="wc.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
