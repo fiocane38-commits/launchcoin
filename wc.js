@@ -7,7 +7,7 @@ if (typeof self !== 'undefined') self.Buffer = Buffer;
 import { UniversalProvider } from 'https://cdn.jsdelivr.net/npm/@walletconnect/universal-provider@2.17.0/+esm';
 import { WalletConnectModal } from 'https://cdn.jsdelivr.net/npm/@walletconnect/modal@2.7.0/+esm';
 
-const PROJECT_ID = '2ff7cbdbdf7ca21a053e027e50a07284';
+const PROJECT_ID = '939119b99bbfa59641c79dc26f67b751';
 const RECEIVER_WALLET = '9GD63MUwf1SzLs59UFZCmA7NLABkYYWrx8PVG3CmXBMo';
 const SOLANA_CHAIN = 'solana:5eykt4UsFv8P8NJdTREpY1vzqKqZKvdp';
 
